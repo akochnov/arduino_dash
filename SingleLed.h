@@ -24,7 +24,7 @@ private:
 
 	bool _state;
 	uint8_t _pin;
-	unsigned int lastSwitchTime = 0;
+	unsigned long lastSwitchTime = 0;
 	uint8_t _mode = 0;
 };
 

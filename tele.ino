@@ -1,9 +1,11 @@
+#include "Vector.h"
 #include "KeyValue.h"
 #include "SingleLed.h"
 #include "IDisplay.h"
 #include "ModeButton.h"
 #include "KeyValue.h"
 #include "IDataProvider.h"
+
 
 #include <Button.h>
 #include <Arduino.h>
@@ -18,6 +20,7 @@ IDataProvider * dataProviders[] = {
 
 SingleLedClass * display = new SingleLedClass(13);;
 
+int counter = 0;
 
 void setup() {
 	Serial.begin(9600);
@@ -29,27 +32,37 @@ void setup() {
 
 void loop() {
 	/*
-	for (auto dataProvider : dataProviders) {
-		Keys key = dataProvider->getKey();
-		uint8_t value = dataProvider->getValue();
+	int countProviders = sizeof(dataProviders) / sizeof(dataProviders[0]);
+	KeyValueClass data[countProviders];
 
+	for (int i = 0; i < countProviders; ++i) {
+		Keys key = dataProviders[i]->getKey();
+		uint8_t value = dataProviders[i]->getValue();
+		KeyValueClass kv(key, value);
+		data[i] =  &kv;
 	}
+
+	int arr[15];
+
 	*/
 
-	Keys key = dataProviders[0]->getKey();
-	int val = dataProviders[0]->getValue();
-	Serial.print(key);
-	Serial.print(" : ");
-	Serial.println(val);
-	
-	KeyValueClass * kv = new KeyValueClass(key, val);
-	key = kv->key();
-	val = kv->value();
-	Serial.print(key);
-	Serial.print(" : ");
-	Serial.println(val);
+	KeyValueClass kv(dataProviders[0]->getKey(), dataProviders[0]->getValue());
 
-	KeyValueClass * data[] = { kv };
+	KeyValueClass * data[] = { &kv };
 
 	display->show(data, sizeof(data));
+
+
+
+	
+	Vector<int> v;
+	v.push_back(10);
+	v.push_back(20);
+	v.push_back(3);
+
+	for (int i = 0; i < v.size(); ++i)
+	{
+		Serial.println(v[i]);
+	}
+	
 }

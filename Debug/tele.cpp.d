@@ -11,6 +11,7 @@ C:\Users\Alexey\AppData\Local\Temp\VMBuilds\tele\uno\tele.cpp.o: \
  C:\Program\ Files\ (x86)\Arduino\hardware\arduino\avr\cores\arduino/USBAPI.h \
  C:\Program\ Files\ (x86)\Arduino\hardware\arduino\avr\cores\arduino/Arduino.h \
  C:\Program\ Files\ (x86)\Arduino\hardware\arduino\avr\variants\standard/pins_arduino.h \
+ C:\Users\Alexey\AppData\Local\Temp\VMBuilds\tele\uno\Vector.h \
  C:\Users\Alexey\AppData\Local\Temp\VMBuilds\tele\uno\KeyValue.h \
  C:\Users\Alexey\AppData\Local\Temp\VMBuilds\tele\uno\IDataProvider.h \
  C:\Users\Alexey\AppData\Local\Temp\VMBuilds\tele\uno\SingleLed.h \
