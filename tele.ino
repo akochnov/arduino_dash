@@ -1,3 +1,4 @@
+#include <Adafruit_NeoPixel.h>
 #include "Vector.h"
 #include "KeyValue.h"
 #include "SingleLed.h"
@@ -5,6 +6,7 @@
 #include "ModeButton.h"
 #include "KeyValue.h"
 #include "IDataProvider.h"
+#include "LedStrip.h"
 
 
 #include <Button.h>
@@ -14,12 +16,12 @@ Vector<IDataProvider*>  dataProviders;
 
 ModeButton modeButton(6);
 
-//TODO
-//LedStrip ledStrip();
+LedStrip ledStrip(9, 9);
 SingleLed display(13);
 
 
 void setup() {
+
 	Serial.begin(9600);
 	Serial.println("Start");
 
@@ -34,10 +36,15 @@ void loop() {
 		Keys key = dataProviders[i]->getKey();
 		uint8_t value = dataProviders[i]->getValue();
 		KeyValue kv(key, value);
+		//Serial.print(key);
+		//Serial.print(" : ");
+		//Serial.println(value);
 		data.push_back(kv);
 	}
 
 	display.show(&data);
+	ledStrip.show(&data);
+
 }
 
 

@@ -1,6 +1,6 @@
-C:\Users\Alexey\AppData\Local\Temp\VMBuilds\tele\uno\KeyValue.cpp.o: \
- C:\Users\Alexey\AppData\Local\Temp\VMBuilds\tele\uno\KeyValue.cpp \
- C:\Users\Alexey\AppData\Local\Temp\VMBuilds\tele\uno\KeyValue.h \
+C:\Users\Alexey\AppData\Local\Temp\VMBuilds\tele\nano_atmega328\KeyValue.cpp.o: \
+ C:\Users\Alexey\AppData\Local\Temp\VMBuilds\tele\nano_atmega328\KeyValue.cpp \
+ C:\Users\Alexey\AppData\Local\Temp\VMBuilds\tele\nano_atmega328\KeyValue.h \
  C:\Program\ Files\ (x86)\Arduino\hardware\arduino\avr\cores\arduino/arduino.h \
  C:\Program\ Files\ (x86)\Arduino\hardware\arduino\avr\cores\arduino/binary.h \
  C:\Program\ Files\ (x86)\Arduino\hardware\arduino\avr\cores\arduino/WCharacter.h \
@@ -11,5 +11,6 @@ C:\Users\Alexey\AppData\Local\Temp\VMBuilds\tele\uno\KeyValue.cpp.o: \
  C:\Program\ Files\ (x86)\Arduino\hardware\arduino\avr\cores\arduino/Printable.h \
  C:\Program\ Files\ (x86)\Arduino\hardware\arduino\avr\cores\arduino/USBAPI.h \
  C:\Program\ Files\ (x86)\Arduino\hardware\arduino\avr\cores\arduino/Arduino.h \
- C:\Program\ Files\ (x86)\Arduino\hardware\arduino\avr\variants\standard/pins_arduino.h \
- C:\Users\Alexey\AppData\Local\Temp\VMBuilds\tele\uno\IDataProvider.h
+ C:\Program\ Files\ (x86)\Arduino\hardware\arduino\avr\variants\eightanaloginputs/pins_arduino.h \
+ C:\Program\ Files\ (x86)\Arduino\hardware\arduino\avr\variants\eightanaloginputs/../standard/pins_arduino.h \
+ C:\Users\Alexey\AppData\Local\Temp\VMBuilds\tele\nano_atmega328\IDataProvider.h

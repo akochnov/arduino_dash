@@ -22,7 +22,7 @@ void SingleLed::show(Vector<KeyValue> * data)
 		int value = kv.value();
 
 		if (key == Mode) 
-			if (value > 10)	_mode = value - 10;
+			if (value >= 10)	_mode = value - 10;
 			else _mode = value;
 	}
 
