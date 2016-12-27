@@ -14,4 +14,5 @@ C:\Users\Alexey\AppData\Local\Temp\VMBuilds\tele\uno\SingleLed.cpp.o: \
  C:\Program\ Files\ (x86)\Arduino\hardware\arduino\avr\variants\standard/pins_arduino.h \
  C:\Users\Alexey\AppData\Local\Temp\VMBuilds\tele\uno\IDisplay.h \
  C:\Users\Alexey\AppData\Local\Temp\VMBuilds\tele\uno\IDataProvider.h \
- C:\Users\Alexey\AppData\Local\Temp\VMBuilds\tele\uno\KeyValue.h
+ C:\Users\Alexey\AppData\Local\Temp\VMBuilds\tele\uno\KeyValue.h \
+ C:\Users\Alexey\AppData\Local\Temp\VMBuilds\tele\uno\Vector.h

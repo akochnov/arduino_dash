@@ -7,17 +7,17 @@
 #define HOLD_TIME_TRESHHOLD		1500
 
 
-ModeButtonClass::ModeButtonClass(uint8_t pin) : Button(pin, BUTTON_PULLUP_INTERNAL, true, 70)
+ModeButton::ModeButton(uint8_t pin) : Button(pin, BUTTON_PULLUP_INTERNAL, true, 70)
 {
 
 }
 
-Keys ModeButtonClass::getKey() 
+Keys ModeButton::getKey() 
 { 
 	return Mode; 
 }
 
-uint8_t ModeButtonClass::getValue()
+uint8_t ModeButton::getValue()
 { 
 	Button::process();
 	
@@ -48,7 +48,7 @@ uint8_t ModeButtonClass::getValue()
 	return state; 
 }
 
-void ModeButtonClass::nextMode()
+void ModeButton::nextMode()
 {
 	mode++;
 	if (mode > 3) mode = 0;

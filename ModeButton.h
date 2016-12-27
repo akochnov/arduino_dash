@@ -13,12 +13,12 @@
 #include <Button.h>
 
 
-class ModeButtonClass : public IDataProvider, public Button
+class ModeButton : public IDataProvider, public Button
 {
 protected:
 
 public:
-	ModeButtonClass(uint8_t pin);
+	ModeButton(uint8_t pin);
 	Keys getKey();
 	uint8_t getValue();
 	void nextMode();

@@ -12,10 +12,10 @@
 #include "IDataProvider.h"
 
 
-class KeyValueClass
+class KeyValue
 {
  public:
-	 KeyValueClass(Keys k, int v);
+	 KeyValue(Keys k, int v);
 	 Keys key();
 	 int value();
 

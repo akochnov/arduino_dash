@@ -11,13 +11,14 @@
 
 #include "IDisplay.h"
 #include "IDataProvider.h"
+#include "Vector.h"
 
-class SingleLedClass : public IDisplay
+class SingleLed : public IDisplay
 {
 
 public:
-	SingleLedClass(uint8_t pin);
-	void show(KeyValueClass * data[], uint8_t size);
+	SingleLed(uint8_t pin);
+	void show(Vector<KeyValue> * data);
 
 private:
 	void blink(int onTime, int OffTime);
@@ -27,6 +28,8 @@ private:
 	unsigned long lastSwitchTime = 0;
 	uint8_t _mode = 0;
 };
+
+
 
 
 #endif

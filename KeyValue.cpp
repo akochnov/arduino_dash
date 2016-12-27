@@ -4,18 +4,18 @@
 
 #include "KeyValue.h"
 
-KeyValueClass::KeyValueClass(Keys k, int v)
+KeyValue::KeyValue(Keys k, int v)
 {
 	_key = k;
 	_value = v;
 }
 
-Keys KeyValueClass::key()
+Keys KeyValue::key()
 {
 	return _key;
 }
 
-int KeyValueClass::value()
+int KeyValue::value()
 {
 	return _value;
 }

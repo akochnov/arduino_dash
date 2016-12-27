@@ -4,7 +4,7 @@
 
 #include "SingleLed.h"
 
-SingleLedClass::SingleLedClass(uint8_t pin)
+SingleLed::SingleLed(uint8_t pin)
 {
 	_pin = pin;
 	pinMode(_pin, OUTPUT);
@@ -13,16 +13,13 @@ SingleLedClass::SingleLedClass(uint8_t pin)
 }
 
 
-void SingleLedClass::show(KeyValueClass * data[], uint8_t size)
+void SingleLed::show(Vector<KeyValue> * data)
 {
-	if (size == 0) return;
-
-	int len = size / sizeof(data[0]);
-
-	for (int i = 0; i < len; ++i)
+	for (int i = 0; i < (*data).size(); ++i)
 	{
-		Keys key = data[i]->key();
-		int value = data[i]->value();
+		KeyValue kv = (*data)[i];
+		Keys key = kv.key();
+		int value = kv.value();
 
 		if (key == Mode) 
 			if (value > 10)	_mode = value - 10;
@@ -38,7 +35,7 @@ void SingleLedClass::show(KeyValueClass * data[], uint8_t size)
 	}
 }
 
-void SingleLedClass::blink(int onTime, int OffTime)
+void SingleLed::blink(int onTime, int OffTime)
 {
 	if (_state == true && (millis() - lastSwitchTime) > onTime)
 	{
@@ -53,5 +50,3 @@ void SingleLedClass::blink(int onTime, int OffTime)
 		lastSwitchTime = millis();
 	}
 }
-
-

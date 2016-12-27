@@ -11,11 +11,12 @@
 
 #include "IDataProvider.h"
 #include "KeyValue.h"
+#include "Vector.h"
 
 class IDisplay
 {
 public:
-	virtual void show(KeyValueClass * data[], uint8_t size) = 0;
+	virtual void show(Vector<KeyValue> * data) = 0;
 };
 
 #endif

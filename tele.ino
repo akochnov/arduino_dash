@@ -10,59 +10,34 @@
 #include <Button.h>
 #include <Arduino.h>
 
+Vector<IDataProvider*>  dataProviders;
 
+ModeButton modeButton(6);
 
-uint8_t lastMode = 0;
+//TODO
+//LedStrip ledStrip();
+SingleLed display(13);
 
-IDataProvider * dataProviders[] = { 
-	new ModeButtonClass(6) 
-};
-
-SingleLedClass * display = new SingleLedClass(13);;
-
-int counter = 0;
 
 void setup() {
 	Serial.begin(9600);
 	Serial.println("Start");
 
-	//pinMode(13, OUTPUT); //debug to led 13
-
+	dataProviders.push_back(&modeButton);
 }
 
 void loop() {
-	/*
-	int countProviders = sizeof(dataProviders) / sizeof(dataProviders[0]);
-	KeyValueClass data[countProviders];
+	Vector<KeyValue> data;
 
-	for (int i = 0; i < countProviders; ++i) {
+	for (int i = 0; i < dataProviders.size(); ++i) 
+	{
 		Keys key = dataProviders[i]->getKey();
 		uint8_t value = dataProviders[i]->getValue();
-		KeyValueClass kv(key, value);
-		data[i] =  &kv;
+		KeyValue kv(key, value);
+		data.push_back(kv);
 	}
 
-	int arr[15];
-
-	*/
-
-	KeyValueClass kv(dataProviders[0]->getKey(), dataProviders[0]->getValue());
-
-	KeyValueClass * data[] = { &kv };
-
-	display->show(data, sizeof(data));
-
-
-
-	
-	Vector<int> v;
-	v.push_back(10);
-	v.push_back(20);
-	v.push_back(3);
-
-	for (int i = 0; i < v.size(); ++i)
-	{
-		Serial.println(v[i]);
-	}
-	
+	display.show(&data);
 }
+
+
