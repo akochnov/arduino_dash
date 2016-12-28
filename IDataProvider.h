@@ -1,7 +1,14 @@
 #ifndef IDataProvider_h
 #define IDataProvider_h
 
-enum Keys { Mode, VehicleSpeed, EngineSpeed, DisplayMode };
+enum Keys { 
+	Mode, 
+	VehicleSpeed, 
+	EngineSpeed, 
+	MaxEngineSpeed, 
+	MinEngineSpeed, 
+	DisplayMode
+};
 
 class IDataProvider
 {

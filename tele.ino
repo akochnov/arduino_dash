@@ -19,6 +19,11 @@ ModeButton modeButton(6);
 LedStrip ledStrip(9, 9);
 SingleLed display(13);
 
+KeyValue maxESpeed(MaxEngineSpeed, 7500);
+
+int rpm = 1000;
+unsigned long lastRpmChangedMillis = 0;
+int rpmIncrement = 20;
 
 void setup() {
 
@@ -42,8 +47,23 @@ void loop() {
 		data.push_back(kv);
 	}
 
+	if ((millis() - lastRpmChangedMillis) > 15)
+	{
+		rpm = rpm + rpmIncrement;
+		if (rpm > 7000 || rpm < 1000) rpmIncrement = -rpmIncrement;
+		lastRpmChangedMillis = millis();
+	}
+
+	KeyValue eSpeed(EngineSpeed, rpm);
+	data.push_back(eSpeed);
+	data.push_back(maxESpeed);
+
 	display.show(&data);
 	ledStrip.show(&data);
+	
+	//Serial.print(lastRpmChangedMillis);
+	//Serial.print(" : ");
+	//Serial.println(rpm);
 
 }
 

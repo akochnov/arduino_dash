@@ -17,12 +17,23 @@ class LedStrip : public IDisplay
 
 private:
 	void dim(bool d);
-	Adafruit_NeoPixel pixels;
+	void setMode(uint8_t m);
+	uint16_t rpmToPixelsQty(uint16_t qtyPixels);
+
+	void pixels(int n, uint32_t c);
+
+	Adafruit_NeoPixel _pixels;
 	uint8_t _mode = 0;
 	
-	long lastTime = 0;
-	bool isShowing = false;
-	uint16_t activePixel = 0;
+	//Store current engine speed and tachometer resolution
+	unsigned int _rpm = 0;
+	unsigned int _minRpm = 1000;
+	unsigned int _maxRpm = 8000;
+
+	//Properties used by piu()
+	unsigned long _lastTime = 0;
+	bool _isShowing = false;
+	uint16_t _activePixel = 0;
 };
 
 #endif

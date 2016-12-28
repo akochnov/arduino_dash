@@ -1,8 +1,8 @@
 #include "LedStrip.h"
 
-LedStrip::LedStrip(uint16_t n, uint8_t p) : pixels(n, p, NEO_GRB + NEO_KHZ800)
+LedStrip::LedStrip(uint16_t n, uint8_t p) : _pixels(n, p, NEO_GRB + NEO_KHZ800)
 {
-	pixels.begin();
+	_pixels.begin();
 }
 
 void LedStrip::show(Vector<KeyValue> * data)
@@ -13,93 +13,147 @@ void LedStrip::show(Vector<KeyValue> * data)
 		Keys key = kv.key();
 		int value = kv.value();
 
-		if (key == Mode)
-			if (value >= 10)
-			{
-				_mode = value - 10;
-				LedStrip::dim(true);
-			}
-			else
-			{
-				_mode = value;
-				LedStrip::dim(false);
-			}
+		switch (key)
+		{
+		case Mode:
+			LedStrip::setMode(value);
+			break;
+		case EngineSpeed:
+			_rpm = value;
+			break;
+		case MaxEngineSpeed:
+			_maxRpm = value;
+			break;
+		case MinEngineSpeed:
+			_minRpm = value;
+			break;
+		}
 	}
 
-	Serial.print("LedStrip _mode: ");
-	Serial.println(_mode);
+	//Serial.print("LedStrip _mode: ");
+	//Serial.println(_mode);
 
 	switch (_mode)
 	{
 	case 0: LedStrip::piu(); break;
-	case 1: break;
+	case 1: LedStrip::pixels(LedStrip::rpmToPixelsQty(_pixels.numPixels()), _pixels.Color(0, 150, 0)); break;
 	case 2: break;
 	case 3: break;
 	}
 }
 
+
+
 void LedStrip::piu()
 {
-	if (isShowing == true)								//One pixel now is active
+	if (_isShowing == true)								//One pixel now is active
 	{
-		if ((millis() - lastTime) > 10)
+		if ((millis() - _lastTime) > 10)
 		{
-			pixels.clear();
-			if (activePixel == 8)						//Last pixel was active -> turn off
+			_pixels.clear();
+			if (_activePixel == 8)						//Last pixel was active -> turn off
 			{
-				isShowing = false;
-				pixels.show();
-				lastTime = millis();
+				_isShowing = false;
+				_pixels.show();
+				_lastTime = millis();
 				return;
 			}
-			++activePixel;
-			pixels.setPixelColor(activePixel, pixels.Color(150, 150, 150));
-			pixels.show();
-			lastTime = millis();
+			++_activePixel;								//Activate next pixel
+			_pixels.setPixelColor(_activePixel, _pixels.Color(150, 150, 150));
+			_pixels.show();
+			_lastTime = millis();
 		}
 	}
 	else
 	{
-		if ((millis() - lastTime) > 1000)				//Activate first pixel
+		if ((millis() - _lastTime) > 1000)				//Activate first pixel
 		{
-			isShowing = true;
-			activePixel = 0;
-			pixels.clear();
-			pixels.setPixelColor(activePixel, pixels.Color(150, 150, 150));
-			pixels.show();
-			lastTime = millis();
+			_isShowing = true;
+			_activePixel = 0;
+			_pixels.clear();
+			_pixels.setPixelColor(_activePixel, _pixels.Color(150, 150, 150));
+			_pixels.show();
+			_lastTime = millis();
 		}
 	}
 }
 
 void LedStrip::dim(bool d)
 {
-	if (d) pixels.setBrightness(30);
-	else pixels.setBrightness(255);
-	pixels.show();
+	if (d) _pixels.setBrightness(30);
+	else _pixels.setBrightness(255);
+	_pixels.show();
+}
+
+void LedStrip::setMode(uint8_t m)
+{
+	if (m >= 10)
+	{
+		_mode = m - 10;
+		LedStrip::dim(true);
+	}
+	else
+	{
+		_mode = m;
+		LedStrip::dim(false);
+	}
+}
+
+uint16_t LedStrip::rpmToPixelsQty(uint16_t qtyPixels = 0)
+{
+	if (qtyPixels == 0) qtyPixels = _pixels.numPixels();
+	
+	Serial.print(_rpm);
+	Serial.print(" : ");
+
+	double segment = (_maxRpm - _minRpm) / (qtyPixels - 1);
+	
+	Serial.print((int)segment);
+	Serial.print(" : ");
+
+	double count;
+
+	if (_rpm > _minRpm)
+	{
+		if ((_rpm - _minRpm) < segment)
+		{
+			count = 1;
+		}
+		else
+		{
+			count = ((_rpm - _minRpm) / segment) + 1;
+		}
+	}
+	else
+		count = 0;
+
+	Serial.println((int)count);
+	
+	return (uint16_t) count;
+	
 }
 
 
-/*
+
 void LedStrip::pixels(int n, uint32_t c)
 {
-  if (n > Adafruit_NeoPixel::numPixels())
+  if (n > _pixels.numPixels())
   {
-    n = Adafruit_NeoPixel::numPixels();
+    n = _pixels.numPixels();
   }
 
-  for (int i = 0; i < Adafruit_NeoPixel::numPixels(); i++)                             
+  for (int i = 0; i < _pixels.numPixels(); i++)
   {
     if (i < n) 
     {
-      Adafruit_NeoPixel::setPixelColor(i, c);
+		_pixels.setPixelColor(i, c);
     }
     else
     {
-      Adafruit_NeoPixel::setPixelColor(i, Adafruit_NeoPixel::Color(0, 0, 0));
+		_pixels.setPixelColor(i, _pixels.Color(0, 0, 0));
     }
   }
-  Adafruit_NeoPixel::show();
+  _pixels.show();
 }
-*/
+
 
