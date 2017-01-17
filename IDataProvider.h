@@ -5,8 +5,6 @@ enum Keys {
 	Mode, 
 	VehicleSpeed, 
 	EngineSpeed, 
-	MaxEngineSpeed, 
-	MinEngineSpeed, 
 	DisplayMode
 };
 

@@ -7,7 +7,7 @@
 #define HOLD_TIME_TRESHHOLD		1500
 
 
-ModeButton::ModeButton(uint8_t pin) : Button(pin, BUTTON_PULLUP_INTERNAL, true, 70)
+ModeButton::ModeButton(uint8_t pin) : Button(pin, BUTTON_PULLUP_INTERNAL, true, 100)
 {
 
 }

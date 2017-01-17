@@ -25,7 +25,7 @@ public:
 
 private:
 	uint8_t		mode = 0;
-	bool		dim = false;
+	bool		dim = true;
 	bool		dimSwitched = false;
 };
 
